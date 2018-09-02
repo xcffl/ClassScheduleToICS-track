@@ -44,6 +44,13 @@ function getDateTimeString(date, time) {
     return getDateString(date) + 'T' + getTimeString(time);
 }
 
+// get current date time as the time stamp 
+function getTimeStamp() {
+    var date = new Date(Date.now());
+    // 2011-10-05T14:48:00.000Z -> 20111005T144800
+    return date.toISOString().split('.')[0].replace(/:/g, '').replace(/-/g, '');
+}
+
 // MTWThF -> MO,TU,WE,TH,FR
 function getDaysOfWeek(s) {
     var days = []
@@ -106,11 +113,11 @@ function fillempty(data) {
 
 function listener() {
     console.debug("listener fired.");
-    jQuery(function($) {
+    jQuery(function ($) {
         var iCalContentArray = [];
         var data = [];
 
-        $('.PSGROUPBOXWBO').each(function() {
+        $('.PSGROUPBOXWBO').each(function () {
             var eventTitle = $(this).find('.PAGROUPDIVIDER').text().split('-');
             data['courseCode'] = eventTitle[0];
             data['courseName'] = eventTitle[1];
@@ -120,7 +127,7 @@ function listener() {
             console.debug(data['courseCode']);
             console.debug(componentRows);
 
-            componentRows.each(function() {
+            componentRows.each(function () {
 
                 // Collect Data
                 data['classNumber'] = $(this).find(selectors['classNumber']).text();
@@ -132,6 +139,7 @@ function listener() {
                     console.debug('startEndTimes' + data['startEndTimes']);
                     if (data['startEndTimes']) {
                         data['daysOfWeek'] = getDaysOfWeek(daysTimes.match(/[A-Za-z]*[^\x00-\xff]* /)[0]);
+                        data['timeStamp'] = getTimeStamp();
                         data['startTime'] = data['startEndTimes'][0];
                         data['endTime'] = data['startEndTimes'][1];
                         data['section'] = $(this).find(selectors['section']).text();
@@ -181,8 +189,8 @@ function listener() {
             // where we do not need to encode data to URI
             iCalContent = wrapICalContent(iCalContentArray.join(''));
             iCalBlob = new Blob(
-              [iCalContent],
-              {type: 'data:text/calendar;charset=utf8'}
+                [iCalContent],
+                { type: 'data:text/calendar;charset=utf8' }
             );
 
             browser.runtime.sendMessage({
@@ -199,7 +207,7 @@ function listener() {
 
 
 var timeout = null;
-document.addEventListener("DOMSubtreeModified", function() {
+document.addEventListener("DOMSubtreeModified", function () {
     if (timeout) {
         clearTimeout(timeout);
     }

@@ -10,6 +10,7 @@ function composeical(data) {
   }
   var iCalContent =
     'BEGIN:VEVENT\r\n' +
+    'DTSTAMP:' + data['timeStamp'] + '\r\n' +
     //'DTSTART;TZID=' + timezone + ':' + getDateTimeString(startDate, startTime) + '\r\n' +
     'DTSTART;TZID=' + timezone + ':' + data['startDateString'] + 'T' + getTimeString(data['startTime']) + '\r\n' +
     //'DTEND;TZID=' + timezone + ':' + getDateTimeString(startDate, endTime) + '\r\n' +
