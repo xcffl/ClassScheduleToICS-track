@@ -4,36 +4,37 @@ function composeical(data) {
     // For the difficulty of determining the real start date of each day, we use a unified start
     // date, yet set Monday into the exceptions of the classes that take in other days to cover most cases
     if (data['daysOfWeek'] != "MO") {
-      var exdate = 'EXDATE;TZID=' + timezone + ':' + getDateTimeString(data['startDate'], data['startTime']) + '\n'
+        var exdate = 'EXDATE;TZID=' + timezone + ':' + getDateTimeString(data['startDate'], data['startTime']) + '\r\n'
     } else {
-      var exdate = ''
+        var exdate = ''
     }
     var iCalContent =
-        'BEGIN:VEVENT\n' +
-        'DTSTART;TZID=' + timezone + ':' + getDateTimeString(data['startDate'], data['startTime']) + '\n' +
-        //'DTSTART;TZID=' + timezone + ':' + startDateString + 'T' + getTimeString(startTime) + '\n' +
-        'DTEND;TZID=' + timezone + ':' + getDateTimeString(data['startDate'], data['endTime']) + '\n' +
-        //'DTEND;TZID=' + timezone + ':' + startDateString + 'T' + getTimeString(endTime) + '\n' +
-        'LOCATION:' + data['room'] + '\n' +
-        'RRULE:FREQ=WEEKLY;UNTIL=' + getDateTimeString(data['endDate'], data['endTime']) + 'Z;BYDAY=' + data['daysOfWeek'] + '\n' +
-        //'RRULE:FREQ=WEEKLY;UNTIL=' + endDateString + 'T' + getTimeString(endTime) + 'Z;BYDAY=' + daysOfWeek + '\n' +
+        'BEGIN:VEVENT\r\n' +
+        'DTSTART;TZID=' + timezone + ':' + getDateTimeString(data['startDate'], data['startTime']) + '\r\n' +
+        //'DTSTART;TZID=' + timezone + ':' + startDateString + 'T' + getTimeString(startTime) + '\r\n' +
+        'DTEND;TZID=' + timezone + ':' + getDateTimeString(data['startDate'], data['endTime']) + '\r\n' +
+        //'DTEND;TZID=' + timezone + ':' + startDateString + 'T' + getTimeString(endTime) + '\r\n' +
+        'LOCATION:' + data['room'] + '\r\n' +
+        'RRULE:FREQ=WEEKLY;UNTIL=' + getDateTimeString(data['endDate'], data['endTime']) + 'Z;BYDAY=' + data['daysOfWeek'] + '\r\n' +
+        //'RRULE:FREQ=WEEKLY;UNTIL=' + endDateString + 'T' + getTimeString(endTime) + 'Z;BYDAY=' + daysOfWeek + '\r\n' +
         exdate +
-        //'EXDATE;TZID=' + timezone + ':' + startDateString + 'T' + getTimeString(startTime) + '\n' +
-        'SUMMARY:' + data['courseCode'] + '(' + data['component'] + ')\n' +
+        //'EXDATE;TZID=' + timezone + ':' + startDateString + 'T' + getTimeString(startTime) + '\r\n' +
+        'SUMMARY:' + data['courseCode'] + '(' + data['component'] + ')\r\n' +
         'DESCRIPTION:' +
-        'Course Name: ' + data['courseName'] + '\\n' +
-        'Section: ' + data['section'] + '\\n' +
-        'Instructor: ' + data['instructor'] + '\\n' +
-        'Component: ' + data['component'] + '\\n' +
-        'Class Number: ' + data['classNumber'] + '\\n' +
-        'Days/Times: ' + data['daysTimes'] + '\\n' +
-        'Start/End Date: ' + data['startEndDate'] + '\\n' +
-        'Location: ' + data['room'] + '\\n\\n\\n---\\n' +
-        'Note: ' + 'Proudly brought to you by Alan Chen. If you find any mistake, please report it immediately to admin@zenan.ch or on Github as such mistake will annoy other students.' + '\\n\n' +
-        'END:VEVENT\n';
+        'Course Name: ' + data['courseName'] + '\r\n' +
+        'Section: ' + data['section'] + '\r\n' +
+        'Instructor: ' + data['instructor'] + '\r\n' +
+        'Component: ' + data['component'] + '\r\n' +
+        'Class Number: ' + data['classNumber'] + '\r\n' +
+        'Days/Times: ' + data['daysTimes'] + '\r\n' +
+        'Start/End Date: ' + data['startEndDate'] + '\r\n' +
+        'Location: ' + data['room'] + '\r\n---\r\n' +
+        'Note: ' + 'Proudly brought to you by Alan Chen. If you find any mistake, please report it immediately to admin@zenan.ch or on Github as such mistake will annoy other students.' + '\r\n' +
+        'END:VEVENT\r\n';
     //console.debug(iCalContent);
     // Remove double spaces from content.
-    iCalContent = iCalContent.replace(/\s{2,}/g, ' ');
+    iCalContent = iCalContent.replace(/ {2,}/g, ' ');
+    iCalContent = iCalContent.replace(/(\r\n){2,}/g, '\r\n');
     return iCalContent;
 }
 
