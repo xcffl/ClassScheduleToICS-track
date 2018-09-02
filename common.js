@@ -1,7 +1,7 @@
 /**
  * Class Schedule to ICS File Exporter
  * (c) 2015 Alan
- * With contributions from: Baraa Hamodi, Keanu Lee
+ * With contributions from: Baraa Hamodi, Keanu Lee, xcffl
  *
  * Ported to CUHK by: Max Sum <maxsumprc@gmail.com>
  *
@@ -75,9 +75,9 @@ function getDaysOfWeek(s) {
 
 // VEVENT -> BEGIN:VCALENDAR...VTIMEZONE...VEVENT...END:VCALENDAR
 function wrapICalContent(iCalContent) {
-    return 'BEGIN:VCALENDAR\n' +
-        'VERSION:2.0\n' +
-        'PRODID:-//Alan Chen/Class Schedule to ICS//EN\n' +
+    return 'BEGIN:VCALENDAR\r\n' +
+        'VERSION:2.0\r\n' +
+        'PRODID:-//Alan Chen/Class Schedule to ICS//EN\r\n' +
 
         // Time Zone
         'BEGIN:VTIMEZONE\r\n' +
@@ -93,7 +93,7 @@ function wrapICalContent(iCalContent) {
 
         iCalContent +
 
-        'END:VCALENDAR\n';
+        'END:VCALENDAR\r\n';
 }
 
 function fillempty(data) {
