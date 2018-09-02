@@ -73,12 +73,26 @@ function getDaysOfWeek(s) {
     return days.join(',')
 }
 
-// VEVENT -> BEGIN:VCALENDAR...VEVENT...END:VCALENDAR
+// VEVENT -> BEGIN:VCALENDAR...VTIMEZONE...VEVENT...END:VCALENDAR
 function wrapICalContent(iCalContent) {
     return 'BEGIN:VCALENDAR\n' +
         'VERSION:2.0\n' +
         'PRODID:-//Alan Chen/Class Schedule to ICS//EN\n' +
+
+        // Time Zone
+        'BEGIN:VTIMEZONE\r\n' +
+        'TZID:Asia/Hong_Kong\r\n' +
+        'X-LIC-LOCATION:Asia/Hong_Kong\r\n' +
+        'BEGIN:STANDARD\r\n' +
+        'TZOFFSETFROM:+0800\r\n' +
+        'TZOFFSETTO:+0800\r\n' +
+        'TZNAME:HKT\r\n' +
+        'DTSTART:19700101T000000\r\n' +
+        'END:STANDARD\r\n' +
+        'END:VTIMEZONE\r\n' +
+
         iCalContent +
+
         'END:VCALENDAR\n';
 }
 
