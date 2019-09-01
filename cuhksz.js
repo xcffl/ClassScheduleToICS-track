@@ -10,6 +10,7 @@ function composeical(data) {
   }
   var iCalContent =
     'BEGIN:VEVENT\r\n' +
+    'UID:' + uuidv4() + '\r\n' +
     'DTSTAMP:' + data['timeStamp'] + '\r\n' +
     //'DTSTART;TZID=' + timezone + ':' + getDateTimeString(startDate, startTime) + '\r\n' +
     'DTSTART;TZID=' + timezone + ':' + data['startDateString'] + 'T' + getTimeString(data['startTime']) + '\r\n' +
@@ -30,7 +31,6 @@ function composeical(data) {
     'Days/Times: ' + data['daysTimes'] + '\r\n' +
     'Start/End Date: ' + data['startEndDate'] + '\r\n' +
     'Location: ' + data['room'] + '\r\n---\r\n' +
-    'Note: ' + 'Proudly brought to you by Alan(CUHKSZ) and Max Sum(CUHK). If you find any mistake, please report it immediately to admin@zenan.ch or on Github.' + '\r\n' +
     'END:VEVENT\r\n';
   //console.debug(iCalContent);
   // Remove double spaces from content.
