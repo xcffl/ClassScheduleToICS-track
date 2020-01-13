@@ -30,8 +30,7 @@ function composeical(data) {
         'Class Number: ' + data['classNumber'] + '\r\n' +
         'Days/Times: ' + data['daysTimes'] + '\r\n' +
         'Start/End Date: ' + data['startEndDate'] + '\r\n' +
-        'Location: ' + data['room'] + '\r\n---\r\n' +
-        // 'Note: ' + 'Proudly brought to you by Alan Chen. If you find any mistake, please report it immediately to admin@zenan.ch or on Github as such mistake will annoy other students.' + '\r\n' +
+        'Location: ' + data['room'] + '\r\n' +
         'END:VEVENT\r\n';
     //console.debug(iCalContent);
     // Remove double spaces from content.

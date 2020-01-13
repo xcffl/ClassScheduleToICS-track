@@ -30,7 +30,7 @@ function composeical(data) {
     'Class Number: ' + data['classNumber'] + '\r\n' +
     'Days/Times: ' + data['daysTimes'] + '\r\n' +
     'Start/End Date: ' + data['startEndDate'] + '\r\n' +
-    'Location: ' + data['room'] + '\r\n---\r\n' +
+    'Location: ' + data['room'] + '\r\n' +
     'END:VEVENT\r\n';
   //console.debug(iCalContent);
   // Remove double spaces from content.

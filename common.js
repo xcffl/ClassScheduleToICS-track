@@ -165,7 +165,7 @@ function listener() {
                         data['section'] = $(this).find(selectors['section']).text();
                         data['component'] = $(this).find(selectors['component']).text();
                         data['room'] = $(this).find(selectors['room']).text();
-                        data['instructor'] = $(this).find(selectors['instructor']).text();
+                        data['instructor'] = $(this).find(selectors['instructor']).text().replace(/\n/g, '');
                         data['startEndDate'] = $(this).find(selectors['startEndDate']).text();
                         console.debug('startEndDate' + data['startEndDate']);
                         // Start the event one day before the actual start date, then exclude it in an exception
